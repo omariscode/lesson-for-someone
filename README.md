@@ -1,6 +1,6 @@
 # NutriAI — IA a trabalhar com dados de uma API externa
 
-Este projeto foi feito para **ensinar** como é que um modelo de IA pode consumir e trabalhar com dados vindos de uma API externa.
+Nesse projeto basicamente uma demonstração de como é que um modelo de IA pode consumir e trabalhar com dados vindos de uma API externa.
 
 A ideia é pegar numa API de nutrição, pedir dados sobre uma refeição, e usar esses dados para alimentar um modelo de IA que avalia se a refeição é saudável ou não.
 
