@@ -194,7 +194,7 @@ print(f"Alimentos: {', '.join(resultado['alimentos'])}")
 
 ## A parte mais importante para perceber
 
-O modelo de IA **não é mágica**. É matemática simples:
+O modelo de IA não faz requisição na API. Ela apenas pega os dados que a API envia e o resto é matemática com os mesmos dados:
 
 1. **Entrada:** JSON com números (os nutrientes)
 2. **Processamento:** Multiplicar cada número por um peso e somar
@@ -249,45 +249,3 @@ Nutrientes (média por alimento):
 
 ---
 
-## Tabela de pesos (para experimentar)
-
-Podes abrir o `ia.py` e alterar os pesos para ver como o comportamento muda:
-
-| Nutriente      | Peso atual | O que acontece se aumentares |
-|----------------|-----------|-------------------------------|
-| `gordura`      | -0.3      | Penaliza mais alimentos gordos |
-| `saturada`     | -0.6      | Penaliza ainda mais gorduras saturadas |
-| `sodio`        | -0.005    | Penaliza mais comida salgada |
-| `colesterol`   | -0.04     | Penaliza mais alimentos com colesterol |
-| `fibra`        | +2.0      | Recompensa ainda mais alimentos ricos em fibra |
-| `acucar`       | -0.4      | Penaliza mais alimentos açucarados |
-| `carboidratos` | -0.1      | Penaliza mais hidratos |
-
-Experimenta mudar e corre outra vez para veres a diferença.
-
----
-
-## Para o professor / mentor
-
-Este projeto foi pensado para explicar conceitos fundamentais:
-
-### O que se aprende
-
-| Conceito | Onde se vê no código |
-|----------|----------------------|
-| Consumir APIs REST | `index.py:buscar_dados()` — `requests.get()` com headers e API Key |
-| JSON como formato de dados | A API devolve uma lista de dicionários Python |
-| Extrair dados de JSON | `ia.py` — percorrer a lista com `for`, aceder a campos com `item.get("chave", 0)` |
-| Pré-processamento | Calcular médias, normalizar, tratar erros de tipo |
-| Modelo de decisão baseado em regras | Pesos lineares que transformam features num score |
-| Separação de responsabilidades | `index.py` (IO) separado do `ia.py` (lógica) |
-| CLI interativa | `input()` dentro de um `while True` |
-| Variáveis de ambiente | `.env` com `python-dotenv` |
-
-### Exercícios para dar a quem está a aprender
-
-1. **Muda os pesos** — faz com que ovos com bacon passe a "Pouco Saudável"
-2. **Adiciona um novo nutriente** — se a API devolver `protein_g`, adiciona ao modelo
-3. **Muda os limiares** — faz com que "Saudável" seja ≥ 80 em vez de ≥ 70
-4. **Adiciona sugestão** — se o score for < 45, imprime uma dica tipo "Tenta adicionar mais vegetais"
-5. **Acumula refeições** — guarda o score de cada refeição e mostra a média no final
